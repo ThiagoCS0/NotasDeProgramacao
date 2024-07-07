@@ -89,13 +89,13 @@ main {
 }
 
 #cadastro {
-	display: none;
+	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
 
 #consulta {
-	display: flex;
+	display: none;
 	flex-direction: column;
 	gap: 10px;
 }

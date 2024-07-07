@@ -1,0 +1,211 @@
+:root {
+	--prcT: #DDD;
+	--prcF: #07F;
+	--prcE: #0FF;
+	--prcBT: #AAA;
+	--prcBF: #333;
+	--prcBE: #FFF;
+	--prcBF2: #222;
+	--xx: calc(20);
+}
+
+* {
+	-webkit-user-drag: none;
+	box-sizing: border-box;
+	user-select: none;
+	border: 0;
+	margin: 0;
+}
+
+html {
+	height: 100vh;
+}
+
+body {
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	padding: 4px;
+	height: 37px;
+}
+
+::placeholder,
+::-ms-input-placeholder {
+	color: var(--prcBT);
+}
+
+textarea {
+	resize: none;
+}
+
+section {
+	max-width: 1300px;
+	padding: 0 20px;
+	width: 80vw;
+	height: 100%;
+}
+
+.linhaSelec {
+	color: var(--prcE);
+}
+
+/* --------- HEADER --------- */
+header {
+	background-color: var(--prcBF);
+	align-items: center;
+	height: fit-content;
+	display: flex;
+	height: 50px;
+}
+
+header a {
+	color: var(--prcT);
+	padding: 10px;
+}
+
+header a:hover {
+	color: var(--prcE);
+}
+
+ul {
+	flex-direction: row;
+	list-style: none;
+	display: flex;
+}
+
+/* --------- MAIN --------- */
+main {
+	background-color: var(--prcT);
+	align-items: center;
+	flex-direction: column;
+	overflow: auto;
+	display: flex;
+	height: calc(100% - 100px);
+}
+
+#cadastro {
+	display: none;
+	flex-direction: column;
+	gap: 10px;
+}
+
+#consulta {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.consultaOpcoes {
+	height: fit-content !important;
+}
+
+.consultaTabela {
+	height: 50%;
+}
+
+main h1 {
+	border-bottom: 3px solid var(--prcBF);
+	width: fit-content;
+}
+
+.opcoes {
+	background-color: var(--prcBF);
+	flex-direction: column;
+	color: var(--prcT);
+	overflow: auto;
+	padding: 30px;
+	display: flex;
+	height: 80%;
+	gap: 10px;
+}
+
+.divOpc {
+	justify-content: space-between;
+	flex-direction: row;
+	display: flex;
+}
+
+.valores {
+	background-color: var(--prcBF2);
+	color: var(--prcT);
+	font-size: medium;
+	padding: 10px;
+	outline: none;
+	height: 40px;
+}
+
+.requerido {
+	border: 1px solid red;
+}
+
+.descricao {
+	height: 70px;
+	width: 100%;
+}
+
+.titulo {
+	width: 100%;
+}
+
+.bts {
+	background-color: #444;
+	color: var(--prcBT);
+	font-size: xx-large;
+	cursor: pointer;
+	height: 40px;
+	width: 40px;
+}
+
+.btsT {
+	width: fit-content;
+	font-size: medium;
+	min-width: 40px;
+	padding: 0 10px;
+}
+
+.divOpc:last-child {
+	justify-content: space-between;
+	display: flex;
+}
+
+#tabelaConsulta {
+	border-collapse: collapse;
+}
+
+th {
+	padding-bottom: 30px;
+}
+
+td {
+	cursor: pointer;
+	padding: 5px;
+	border-bottom: 2px solid #000;
+}
+
+/* --------- FOOTER --------- */
+footer {
+	background-color: var(--prcBF);
+	overflow: auto;
+	height: 50px;
+}
+
+/* --------- RESPONSIVIDADE --------- */
+
+@media only screen and (max-width: 800px) {
+	.divOpc {
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.divOpc:last-child {
+		justify-content: space-between;
+		flex-direction: row;
+		display: flex;
+		width: 100%;
+	}
+}

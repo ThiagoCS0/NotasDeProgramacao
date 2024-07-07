@@ -98,17 +98,7 @@ function Ler(texto) {
 	});
 }
 function Salvar() {
-	let tx = "", f = '0'; const tb = document.querySelectorAll('#tabelaConsulta td'); let l = '';
-	for (let i = 0; i < tb.length; i++) {
-		if (f != 5) { l = '₢'; f++; } else { if (i != tb.length - 1) { l = '§'; } else { l = ''; } f = 0; }
-		tx += tb[i].innerText + l;
-	}
-	const link = document.createElement("a"); link.style.setProperty('display', 'none');
-	link.href = URL.createObjectURL(new Blob([tx], { type: 'text/plain' }));
-	link.download = `Dados[${Agora(true)}].txt`;
-	link.click();
-	URL.revokeObjectURL(link.href);
-	link.remove();
+
 }
 function ImExportar(importar) {
 	if (importar) {

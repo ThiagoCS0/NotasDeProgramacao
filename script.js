@@ -68,13 +68,13 @@ document.getElementById("busca").addEventListener('keypress', function (event) {
 	if (event.key === "Enter") { Buscar(); }
 });
 function Buscar() {
+	LinhasLimparSelecao();
 	const tab = document.querySelectorAll('#tabelaConsulta tr'), bsc = document.querySelector('#busca');
 	if (tab.length > 1) {
 		const calD = document.getElementById('consultaDia'), calM = document.getElementById('consultaMes'), calA = document.getElementById('consultaAno'), Ling = document.getElementById('consultaLingua');
 		const dia = calD.options[calD.selectedIndex].text, mes = calM.options[calM.selectedIndex].text, ano = calA.options[calA.selectedIndex].text, lin = Ling.options[Ling.selectedIndex].text;
 		const bDia = !dia.includes("DIA"), bMes = !mes.includes("MÊS"), bAno = !ano.includes("ANO"), bLin = !lin.includes("LINGUAGEM"), bBsc = bsc.value.length > 0;
 		var linha; let i = 0, f = 0;
-		LinhasLimparSelecao();
 		tab.forEach(linhaAtual => {
 			const celulas = linhaAtual.querySelectorAll('td');
 			if (linhaAtual.id != "cabecalho") {

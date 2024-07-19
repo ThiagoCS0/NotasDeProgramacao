@@ -1,119 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N-Prog</title>
-    <link rel="stylesheet" href="./style.css">
-    <script defer src="./script.js"></script>
-  </head>
-  <body>
-    <!--       AVISO:       Ver se da para colocar calendario unico sem ser separado ; ver no video.   -->
-    <!--       BUG:         NENHUM  ---------------------------------  -->
-    <!--       CONTINUAR:   SALVAR/CARREGAR TABELA EM IM ARQUIVO       -->
-    <header>
-      <nav>
-        <ul>
-          <li><a href="#" onclick="Paginas('cadastro')">Cadastro</a></li>
-          <li><a href="#" onclick="Paginas('consulta')">Consulta</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section id="cadastro">
-        <h1>Notas de Programação </h1>
-        <br>
-        <div class="opcoes">
-          <div class="divOpc"
-            style="display: flex; flex-direction: column; gap: 10px;">
-            <div style="width: 100%;">
-              <input type="text" class="valores add titulo requerido"
-                placeholder="Titulo"
-                onkeyup="Requerido(this)">
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-              <div>
-                <select name="dia" class="valores add calendario dia"><option
-                    value>DIA</option></select>
-                <select name="mes" class="valores add calendario mes"><option
-                    value>MÊS</option></select>
-                <select name="ano" class="valores add calendario ano"><option
-                    value>ANO</option></select>
-                <input type="button" class="bts btsT" onclick="Hoje()"
-                  value="Hoje">
-              </div>
-              <div>
-                <select name="linguagem" class="valores add linguagem requerido"
-                  onchange="Requerido(this)"><option
-                    value>LINGUAGEM</option></select>
-              </div>
-            </div>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>N-Prog</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./script.js"></script>
+</head>
+
+<body>
+  <!--       AVISO:       Ver se da para colocar calendario unico sem ser separado ; ver no video.   -->
+  <!--       BUG:         NENHUM  ---------------------------------  -->
+  <!--       CONTINUAR:   SALVAR/CARREGAR TABELA EM IM ARQUIVO       -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="Paginas('cadastro')">Cadastro</a></li>
+        <li><a href="#" onclick="Paginas('consulta')">Consulta</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="cadastro">
+      <h1>Notas de Programação </h1>
+      <br>
+      <div class="opcoes">
+        <div class="divOpc" style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="width: 100%;">
+            <input type="text" class="valores add titulo requerido" placeholder="Titulo" onkeyup="Requerido(this)">
           </div>
-          <div class="divOpc">
-            <textarea name="descricao" class="valores add descricao"
-              placeholder="Descrição" rows="4"></textarea>
-          </div>
-          <div class="divOpc">
-            <input type="button" class="limpar bts" onclick="Limpar()"
-              value="-">
-            <input type="button" class="bts" onclick="Adicionar()"
-              value="+">
+          <div style="display: flex; justify-content: space-between;">
+            <div>
+              <select name="dia" class="valores add calendario dia">
+                <option value>DIA</option>
+              </select>
+              <select name="mes" class="valores add calendario mes">
+                <option value>MÊS</option>
+              </select>
+              <select name="ano" class="valores add calendario ano">
+                <option value>ANO</option>
+              </select>
+              <input type="button" class="bts btsT" onclick="Hoje()" value="Hoje">
+            </div>
+            <div>
+              <select name="linguagem" class="valores add linguagem requerido" onchange="Requerido(this)">
+                <option value>LINGUAGEM</option>
+              </select>
+            </div>
           </div>
         </div>
-      </section>
-      <section id="consulta">
-        <h1>Consultar Notas</h1>
-        <div class="consultaOpcoes opcoes">
-          <div class="divOpc">
-            <div style="width: 100%;">
-              <input type="text" class="valores cst titulo"
-                placeholder="Titulo">
-            </div>
-          </div>
-          <div>
-         <div class="divOpc" style="display: flex; justify-content: space-between;">
-          <div>
-            <select name="dia" class="valores cst calendario dia"><option
-                value>DIA</option></select>
-            <select name="mes" class="valores cst calendario mes"><option
-                value>MÊS</option></select>
-            <select name="ano" class="valores cst calendario ano"><option
-                value>ANO</option></select>
-            <input type="button" class="bts btsT" onclick="Hoje()"
-              value="Hoje">
-          </div>
-          <div
-            style="flex-direction: row; display: flex; gap: 5px;">
-            <select name="linguagem" class="valores cst linguagem"><option
-                value>LINGUAGEM</option></select>
-            <input type="button" class="bts btsT" onclick="Ir()"
-              value="Ir">
-          </div>
-          </div>
-         </div>
-            <div style="display: flex; justify-content: space-between; gap: 5px;">
-              <div>
-                <input type="button" class="bts btsT" value="Importar" onclick="ImExportar(true)">
-              <input type="button" class="bts btsT" value="Exportar" onclick="ImExportar(false)">
-              </div>
-              <div>
-                <input type="button" class="bts" value="-" onclick="ApagarLinha()">
-              </div>
-            </div>
-          </div>
-        </div><!--opcoes-->
-        <div class="consultaTabela opcoes"
-          style="width: 100%; max-height: 50vh;">
-          <table
-            id="tabelaConsulta"><tr><th>TITULO</th><th>DIA</th><th>MÊS</th><th>ANO</th><th>LINGUAGEM</th><th>DESCRIÇÃO</th></tr></table>
+        <div class="divOpc">
+          <textarea name="descricao" class="valores add descricao" placeholder="Descrição" rows="4"></textarea>
         </div>
-      </section>
-    </main>
+        <div class="divOpc">
+          <input type="button" class="limpar bts" onclick="Limpar()" value="-">
+          <input type="button" class="bts" onclick="Adicionar()" value="+">
+        </div>
+      </div>
+    </section>
+    <section id="consulta">
+      <h1>Consultar Notas</h1>
+      <div class="consultaOpcoes opcoes">
+        <div class="divOpc">
+          <div style="width: 100%;">
+            <input type="text" class="valores cst titulo" placeholder="Titulo" id="busca">
+          </div>
+        </div>
+        <div>
+          <div class="divOpc" style="display: flex; justify-content: space-between;">
+            <div>
+              <select id="consultaDia" name="dia" class="valores cst calendario dia">
+                <option value>DIA</option>
+              </select>
+              <select id="consultaMes" name="mes" class="valores cst calendario mes">
+                <option value>MÊS</option>
+              </select>
+              <select id="consultaAno" name="ano" class="valores cst calendario ano">
+                <option value>ANO</option>
+              </select>
+              <input type="button" class="bts btsT" onclick="Hoje()" value="Hoje">
+            </div>
+            <div style="flex-direction: row; display: flex; gap: 5px;">
+              <select id="consultaLingua" name="linguagem" class="valores cst linguagem">
+                <option value>LINGUAGEM</option>
+              </select>
+              <input type="button" class="bts btsT" onclick="Buscar()" value="Ir">
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 5px;">
+          <div>
+            <input type="button" class="bts btsT" value="Importar" onclick="ImExportar(true)">
+            <input type="button" class="bts btsT" value="Exportar" onclick="ImExportar(false)">
+          </div>
+          <div>
+            <input type="button" class="bts" value="-" onclick="ApagarLinha()">
+          </div>
+        </div>
+      </div>
+      </div><!--opcoes-->
+      <div class="consultaTabela opcoes" style="width: 100%; max-height: 50vh;">
+        <table id="tabelaConsulta">
+          <tr id="cabecalho">
+            <th>TITULO</th>
+            <th>DIA</th>
+            <th>MÊS</th>
+            <th>ANO</th>
+            <th>LINGUAGEM</th>
+            <th>DESCRIÇÃO</th>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </main>
 
-    <footer>
+  <footer>
 
-    </footer>
-    <input type="file" id="abrirArquivo" accept=".txt" style="display: none;"/>
+  </footer>
+  <input type="file" id="abrirArquivo" accept=".txt" style="display: none;" />
 
-  </body>
+</body>
+
 </html>

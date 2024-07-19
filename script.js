@@ -38,17 +38,17 @@ function Adicionar() {
 function AdcTabela(linha, carregar) {
 	const v1 = carregar ? linha[0].length : linha[0].value.length, v2 = carregar ? linha[4].length : linha[4].value.length;
 	if (linha.length == 6 && v1 > 0 && v2 > 0) {
-		let tr = document.createElement('tr');
+		let tr_linha = document.createElement('tr');
 		for (let i = 0; i < linha.length; i++) {
-			let td = document.createElement('td');
-			if (i > 0 && i < 5) { td.setAttribute('style', 'text-align: center;') }
-			td.innerText = carregar ? linha[i] : linha[i].value;
-			tr.appendChild(td);
+			let td_celulas = document.createElement('td');
+			if (i > 0 && i < 5) { td_celulas.setAttribute('style', 'text-align: center;') }
+			td_celulas.innerText = carregar ? linha[i] : linha[i].value;
+			tr_linha.appendChild(td_celulas);
 		}
-		tr.id = `i${Aleatorio()}${Agora(false)}`;
-		tr.classList.add('linhas');
-		tr.onclick = LinhaAtual;
-		tabela.appendChild(tr);
+		tr_linha.id = `i${Aleatorio()}${Agora(false)}`;
+		tr_linha.classList.add('linhas');
+		tr_linha.onclick = LinhaAtual;
+		tabela.appendChild(tr_linha);
 	} else { return; }
 }
 function Aleatorio() {
@@ -64,9 +64,28 @@ function Hoje() {
 	const d = [new Date().getDate(), new Date().getMonth() + 1, new Date().getFullYear()]
 	for (let i = 0; i < a.length; i++)(a[i].value = d[i < 3 ? i : i - 3]);
 }
-function Ir() {
-	// BUSCAR NA TABELA
-	document.querySelectorAll(".cst").forEach(z => { M(".:" + z.tagName == 'INPUT' ? z.innerText : z.value); })
+document.getElementById("busca").addEventListener('keypress', function (event) {
+	if (event.key === "Enter") { Buscar(); }
+});
+function Buscar() {
+	const tab = document.querySelectorAll('#tabelaConsulta tr'), bsc = document.querySelector('#busca');
+	if (tab.length > 1) {
+		const calD = document.getElementById('consultaDia'), calM = document.getElementById('consultaMes'), calA = document.getElementById('consultaAno'), Ling = document.getElementById('consultaLingua');
+		const dia = calD.options[calD.selectedIndex].text, mes = calM.options[calM.selectedIndex].text, ano = calA.options[calA.selectedIndex].text, lin = Ling.options[Ling.selectedIndex].text;
+		const bDia = !dia.includes("DIA"), bMes = !mes.includes("MÊS"), bAno = !ano.includes("ANO"), bLin = !lin.includes("LINGUAGEM"), bBsc = bsc.value.length > 0;
+		var linha; let i = 0, f = 0;
+		LinhasLimparSelecao();
+		tab.forEach(linhaAtual => {
+			const celulas = linhaAtual.querySelectorAll('td');
+			if (linhaAtual.id != "cabecalho") {
+				if (bDia) { i++; } if (bMes) { i++; } if (bAno) { i++; } if (bBsc) { i++; } if (bLin) { i++; }
+				if (bDia && celulas[1].innerText == dia) { f++; } if (bMes && celulas[2].innerText == mes) { f++; } if (bAno && celulas[3].innerText == ano) { f++; }
+				if (bBsc && celulas[0].innerText.toLowerCase().includes(bsc.value.toLowerCase())) { f++; } if (bLin && celulas[4].innerText == lin) { f++; }
+				if (i != 0 && i == f) { linhaAtual.classList.toggle('linhaSelec'); }
+				i = f = 0;
+			}
+		});
+	}
 }
 function LinhaAtual(e) {
 	LinhasLimparSelecao();
@@ -74,7 +93,7 @@ function LinhaAtual(e) {
 	idlinha = e.currentTarget.id;
 }
 function ApagarLinha() {
-	document.getElementById(`${idlinha}`).remove();
+	document.getElementById(`${idlinha}`)?.remove();
 }
 function LinhasLimparSelecao() {
 	document.querySelectorAll('.linhas').forEach(l => { l.classList.remove('linhaSelec'); });
@@ -87,7 +106,7 @@ function Agora(completo) {
 }
 function LimparTabela() {
 	const trs = tabela.querySelectorAll('tr');
-	if (trs.length > 0) { trs.forEach(x => { x.remove(); }); }
+	if (trs.length > 0) { trs.forEach(x => { if (x.id != "cabecalho") { x.remove(); } }); }
 }
 function Ler(texto) {
 	LimparTabela();

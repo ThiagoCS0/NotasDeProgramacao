@@ -27,6 +27,7 @@ function Requerido(e) {
 function Adicionar() {
 	if (dados.length == 6 && dados[0].value.length > 0 && dados[4].value.length > 0) {
 		AdcTabela(dados, false);
+		registerTask();
 		Limpar();
 		dados[0].setAttribute('style', 'border: 1px solid red;');
 		dados[4].setAttribute('style', 'border: 1px solid red;');
@@ -55,7 +56,6 @@ function Limpar() {
 	lel.forEach(x => { const y = document.querySelectorAll(x); y.forEach(z => { z.options[0].selected = 'selected'; }) })
 	document.querySelectorAll('.titulo').forEach(x => { x.value = ''; })
 	document.querySelector('.descricao').value = '';
-	db.deleteTask();
 }
 function Hoje() {
 	const a = document.querySelectorAll('.calendario');
@@ -139,7 +139,7 @@ Criar(dia, 'dia', 1, 30); Criar(mes, 'mes', 1, 12); Criar(ano, 'ano', 2020, 2024
 
 
 
-// --------------------- Exercicio da aula 
+// --------------------- Exercicio da aula 23
 class Task {
 	constructor(titulo, dia, mes, ano, linguagem, descricao) {
 		this.titulo = titulo; this.dia = dia; this.mes = mes; this.ano = ano; this.linguagem = linguagem; this.descricao = descricao
@@ -154,7 +154,7 @@ class Database {
 		//localStorage.clear();
 	}
 }
-function getId() { return parseInt(localStorage.getItem('id')) + 1; }
+function getId() { let id = localStorage.getItem('id'); return parseInt(id == "NaN" ? 0 : id == null ? 0 : id) + 1; }
 function registerTask() {
 	const titulo = document.getElementById("cadTit").value, dia = document.getElementById("cadDia").value,
 		mes = document.getElementById("cadMes").value, ano = document.getElementById("cadAno").value,

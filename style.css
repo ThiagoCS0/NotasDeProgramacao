@@ -192,6 +192,15 @@ footer {
 	background-color: var(--prcBF);
 	overflow: auto;
 	height: 50px;
+	color: #EEE;
+	display: flex;
+	align-items: center;
+	justify-content: right;
+	padding: 0 20px;
+}
+
+footer a {
+	color: #EEE;
 }
 
 /* --------- RESPONSIVIDADE --------- */

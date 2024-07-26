@@ -14,9 +14,6 @@ function Criar(ls, el, iin, ifn) {
 		ls.forEach(x => { let y = document.createElement('option'); y.value = x; y.innerText = x; emt.appendChild(y); });
 	});
 }
-function Inicio() {
-
-}
 function Paginas(p) {
 	Limpar();
 	const s = document.querySelectorAll('section');
@@ -58,6 +55,7 @@ function Limpar() {
 	lel.forEach(x => { const y = document.querySelectorAll(x); y.forEach(z => { z.options[0].selected = 'selected'; }) })
 	document.querySelectorAll('.titulo').forEach(x => { x.value = ''; })
 	document.querySelector('.descricao').value = '';
+	db.deleteTask();
 }
 function Hoje() {
 	const a = document.querySelectorAll('.calendario');
@@ -138,4 +136,30 @@ function ImExportar(importar) {
 }
 function M(m) { console.log(m); };
 Criar(dia, 'dia', 1, 30); Criar(mes, 'mes', 1, 12); Criar(ano, 'ano', 2020, 2024); Criar(linguagem, 'linguagem', null, null);
-Inicio();
+
+
+
+// --------------------- Exercicio da aula 
+class Task {
+	constructor(titulo, dia, mes, ano, linguagem, descricao) {
+		this.titulo = titulo; this.dia = dia; this.mes = mes; this.ano = ano; this.linguagem = linguagem; this.descricao = descricao
+	}
+	validadeData() { for (let i in this) { if (this[i] === undefined || this[i] === "") { return false } }; return true; }
+}
+class Database {
+	constructor() { const id = localStorage.getItem('id'); if (id == null) { localStorage.setItem('id', 0) } }
+	createTask(task) { const id = getId(); localStorage.setItem('id', id); localStorage.setItem(id, JSON.stringify(task)); }
+	deleteTask() {
+		localStorage.removeItem(2);
+		//localStorage.clear();
+	}
+}
+function getId() { return parseInt(localStorage.getItem('id')) + 1; }
+function registerTask() {
+	const titulo = document.getElementById("cadTit").value, dia = document.getElementById("cadDia").value,
+		mes = document.getElementById("cadMes").value, ano = document.getElementById("cadAno").value,
+		linguagem = document.getElementById("cadLin").value, descricao = document.getElementById("cadDes").value;
+	const task = new Task(titulo, dia, mes, ano, linguagem, descricao);
+	if (task.validadeData()) { db.createTask(task); }
+}
+const db = new Database();

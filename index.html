@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta name="google-site-verification" content="EWLAyJkbRjSgFHu0R3O-he7-XFN4JjXOvWWY91nmVoY"/>
   <meta charset="UTF-8">
@@ -9,7 +8,6 @@
   <link rel="stylesheet" href="./style.css">
   <script defer src="./script.js"></script>
 </head>
-
 <body>
   <header>
     <nav>
@@ -22,37 +20,37 @@
   <main>
     <section id="cadastro">
       <h1>Notas de Programação </h1>
-      <br>
       <div class="opcoes">
         <div class="divOpc" style="display: flex; flex-direction: column; gap: 10px;">
           <div style="width: 100%;">
-            <input type="text" class="valores add titulo requerido" placeholder="Titulo" onkeyup="Requerido(this)">
+            <input type="text" id="cadTit" class="valores add titulo requerido" placeholder="Titulo" onkeyup="Requerido(this)">
           </div>
           <div style="display: flex; justify-content: space-between;">
             <div>
-              <select name="dia" class="valores add calendario dia">
+              <select id="cadDia" name="dia" class="valores add calendario dia">
                 <option value>DIA</option>
               </select>
-              <select name="mes" class="valores add calendario mes">
+              <select id="cadMes" name="mes" class="valores add calendario mes">
                 <option value>MÊS</option>
               </select>
-              <select name="ano" class="valores add calendario ano">
+              <select id="cadAno" name="ano" class="valores add calendario ano">
                 <option value>ANO</option>
-              </select>
+                </select>
               <input type="button" class="bts btsT" onclick="Hoje()" value="Hoje">
             </div>
             <div>
-              <select name="linguagem" class="valores add linguagem requerido" onchange="Requerido(this)">
+              <select id="cadLin" name="linguagem" class="valores add linguagem requerido" onchange="Requerido(this)">
                 <option value>LINGUAGEM</option>
               </select>
             </div>
           </div>
         </div>
         <div class="divOpc">
-          <textarea name="descricao" class="valores add descricao" placeholder="Descrição" rows="4"></textarea>
+          <textarea id="cadDes"name="descricao" class="valores add descricao" placeholder="Descrição" rows="4"></textarea>
         </div>
         <div class="divOpc">
           <input type="button" class="limpar bts" onclick="Limpar()" value="-">
+          <!-- <input type="button" class="bts" onclick="registerTask()" value="+"> -->
           <input type="button" class="bts" onclick="Adicionar()" value="+">
         </div>
       </div>

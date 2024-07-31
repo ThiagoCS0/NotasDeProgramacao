@@ -60,11 +60,16 @@ function Limpar() {
 function Hoje() {
 	const a = document.querySelectorAll('.calendario');
 	const d = [new Date().getDate(), new Date().getMonth() + 1, new Date().getFullYear()]
-	for (let i = 0; i < a.length; i++)(a[i].value = d[i < 3 ? i : i - 3]);
+	for (let i = 0; i < a.length; i++) { a[i].value = d[i < 3 ? i : i - 3]; };
 }
 document.getElementById("busca").addEventListener('keypress', function (event) {
 	if (event.key === "Enter") { Buscar(); }
 });
+function diasNoMes() {
+	const ano = new Date().getFullYear();
+	const diasNesteMes = [31, (ano % 4 === 0 && (ano % 100 !== 0 || ano % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	return diasNesteMes[new Date().getMonth()];
+}
 function Buscar() {
 	LinhasLimparSelecao();
 	const tab = document.querySelectorAll('#tabelaConsulta tr'), bsc = document.querySelector('#busca');
@@ -135,7 +140,7 @@ function ImExportar(importar) {
 	};
 }
 function M(m) { console.log(m); };
-Criar(dia, 'dia', 1, 30); Criar(mes, 'mes', 1, 12); Criar(ano, 'ano', 2020, 2024); Criar(linguagem, 'linguagem', null, null);
+Criar(dia, 'dia', 1, diasNoMes()); Criar(mes, 'mes', 1, 12); Criar(ano, 'ano', 2024, 2050); Criar(linguagem, 'linguagem', null, null);
 
 
 

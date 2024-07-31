@@ -190,13 +190,13 @@ td {
 /* --------- FOOTER --------- */
 footer {
 	background-color: var(--prcBF);
-	overflow: auto;
-	height: 50px;
-	color: #EEE;
-	display: flex;
-	align-items: center;
 	justify-content: right;
+	align-items: center;
 	padding: 0 20px;
+	overflow: auto;
+	display: flex;
+	color: #EEE;
+	height: 50px;
 }
 
 footer a {
